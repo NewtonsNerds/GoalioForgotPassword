@@ -4,6 +4,7 @@ namespace GoalioForgotPassword\Controller;
 
 use Zend\Form\Form;
 use Zend\Mvc\Controller\AbstractActionController;
+use Zend\ServiceManager\ServiceManager;
 use Zend\Stdlib\ResponseInterface as Response;
 use Zend\Stdlib\Parameters;
 use Zend\View\Model\ViewModel;
@@ -21,6 +22,11 @@ class ForgotController extends AbstractActionController
      * @var PasswordService
      */
     protected $passwordService;
+
+    /**
+     * @var ServiceManager
+     */
+    protected $serviceManager;
 
     /**
      * @var Form
@@ -161,7 +167,7 @@ class ForgotController extends AbstractActionController
     public function getUserService()
     {
         if (!$this->userService) {
-            $this->userService = $this->getServiceLocator()->get('zfcuser_user_service');
+            $this->userService = $this->getServiceManager()->get('zfcuser_user_service');
         }
         return $this->userService;
     }
@@ -175,7 +181,7 @@ class ForgotController extends AbstractActionController
     public function getPasswordService()
     {
         if (!$this->passwordService) {
-            $this->passwordService = $this->getServiceLocator()->get('goalioforgotpassword_password_service');
+            $this->passwordService = $this->getServiceManager()->get('goalioforgotpassword_password_service');
         }
         return $this->passwordService;
     }
@@ -189,7 +195,7 @@ class ForgotController extends AbstractActionController
     public function getForgotForm()
     {
         if (!$this->forgotForm) {
-            $this->setForgotForm($this->getServiceLocator()->get('goalioforgotpassword_forgot_form'));
+            $this->setForgotForm($this->getServiceManager()->get('goalioforgotpassword_forgot_form'));
         }
         return $this->forgotForm;
     }
@@ -202,7 +208,7 @@ class ForgotController extends AbstractActionController
     public function getResetForm()
     {
         if (!$this->resetForm) {
-            $this->setResetForm($this->getServiceLocator()->get('goalioforgotpassword_reset_form'));
+            $this->setResetForm($this->getServiceManager()->get('goalioforgotpassword_reset_form'));
         }
         return $this->resetForm;
     }
@@ -232,7 +238,7 @@ class ForgotController extends AbstractActionController
     public function getOptions()
     {
         if (!$this->options instanceof ForgotControllerOptionsInterface) {
-            $this->setOptions($this->getServiceLocator()->get('goalioforgotpassword_module_options'));
+            $this->setOptions($this->getServiceManager()->get('goalioforgotpassword_module_options'));
         }
         return $this->options;
     }
@@ -240,8 +246,28 @@ class ForgotController extends AbstractActionController
     public function getZfcUserOptions()
     {
         if (!$this->zfcUserOptions instanceof PasswordOptionsInterface) {
-            $this->zfcUserOptions = $this->getServiceLocator()->get('zfcuser_module_options');
+            $this->zfcUserOptions = $this->getServiceManager()->get('zfcuser_module_options');
         }
         return $this->zfcUserOptions;
+    }
+
+    /**
+     * Retrieve service manager instance
+     *
+     * @return ServiceManager
+     */
+    public function getServiceManager()
+    {
+        return $this->serviceManager;
+    }
+
+    /**
+     * Set service manager instance
+     *
+     * @param ServiceManager $locator
+     */
+    public function setServiceManager(ServiceManager $serviceManager)
+    {
+        $this->serviceManager = $serviceManager;
     }
 }

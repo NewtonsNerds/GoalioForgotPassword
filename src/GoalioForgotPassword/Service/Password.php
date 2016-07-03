@@ -10,8 +10,6 @@ use GoalioForgotPassword\Options\ForgotOptionsInterface;
 
 use Zend\ServiceManager\ServiceManager;
 
-use Zend\ServiceManager\ServiceManagerAwareInterface;
-
 use ZfcUser\Mapper\UserInterface as UserMapperInterface;
 use GoalioForgotPassword\Mapper\Password as PasswordMapper;
 
@@ -20,7 +18,7 @@ use Zend\Form\Form;
 
 use ZfcBase\EventManager\EventProvider;
 
-class Password extends EventProvider implements ServiceManagerAwareInterface
+class Password extends EventProvider
 {
     /**
      * @var ModelMapper
