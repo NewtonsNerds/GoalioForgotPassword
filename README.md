@@ -39,7 +39,7 @@ Installation
 
     ```json
     "require": {
-        "goalio/goalio-forgotpassword": "1.*"
+        "newtonsnerds/goalio-forgotpassword": "1.*"
     }
     ```
 

@@ -1,5 +1,5 @@
 {
-    "name": "goalio/goalio-forgotpassword",
+    "name": "newtonsnerds/goalio-forgotpassword",
     "description": "Adding Forgot Password functionalitiy to ZfcUser",
     "type": "library",
     "license": "BSD-3-Clause",
@@ -7,7 +7,7 @@
         "zf2",
         "zfcuser"
     ],
-    "homepage": "https://github.com/goalio/GoalioForgotPassword",
+    "homepage": "https://github.com/NewtonsNerds/GoalioForgotPassword",
     "authors": [
         {
             "name": "Philipp Dobrigkeit",
@@ -26,5 +26,13 @@
         "classmap": [
             "./Module.php"
         ]
+    },
+    "replace": {
+        "goalio/goalio-forgotpassword": "~1.0"
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.x-dev"
+        }
     }
 }
